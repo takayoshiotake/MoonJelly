@@ -60,10 +60,10 @@ namespace MoonJelly {
                 while (!shutdown_) {
                     MJWorkQueueItem item = [this]() -> MJWorkQueueItem {
                         std::unique_lock<std::mutex> lock(works_mutex_);
-                        if (works_.empty()) {
-                            workable_.wait(lock);
-                        }
-                        
+                        // NOTE: Handle spurious wakeup
+                        workable_.wait(lock, [&]() {
+                            return !works_.empty();
+                        });
                         auto item = std::move(works_.front());
                         works_.pop_front();
                         return item;
