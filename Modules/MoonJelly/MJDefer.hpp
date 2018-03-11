@@ -1,6 +1,6 @@
 //
 //  MJDefer.h
-//  MoonJellySample
+//  MoonJelly
 //
 //  Created by OTAKE Takayoshi on 2018/03/11.
 //
