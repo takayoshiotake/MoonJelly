@@ -24,7 +24,7 @@ namespace MoonJelly {
         std::function<void(MJWorkQueueItem &)> work_;
         std::promise<void> promise_;
         
-        MJWorkQueueItem(std::function<void(MJWorkQueueItem &)> work) noexcept
+        explicit MJWorkQueueItem(std::function<void(MJWorkQueueItem &)> work) noexcept
         : work_(std::move(work)) {
         }
         
@@ -58,7 +58,7 @@ namespace MoonJelly {
         explicit MJWorkQueue() noexcept {
             thread_ = std::thread([this]() {
                 while (!shutdown_) {
-                    MJWorkQueueItem item = [this]() -> MJWorkQueueItem {
+                    MJWorkQueueItem item = [&]() -> MJWorkQueueItem {
                         std::unique_lock<std::mutex> lock(works_mutex_);
                         // NOTE: Handle spurious wakeup
                         workable_.wait(lock, [&]() {
@@ -68,7 +68,6 @@ namespace MoonJelly {
                         works_.pop_front();
                         return item;
                     }();
-                    
                     item.work_(item);
                 }
             });
@@ -79,7 +78,7 @@ namespace MoonJelly {
                 std::unique_lock<std::mutex> lock(works_mutex_);
                 works_.clear();
             }
-            async([this](MJWorkQueueItem const &) {
+            async([&](auto &) {
                 shutdown_ = true;
             });
             thread_.join();
