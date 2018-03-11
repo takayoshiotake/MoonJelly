@@ -13,6 +13,11 @@ int main(int argc, const char * argv[]) {
     
     std::cout << std::endl;
     
+    extern void MJExceptionTest();
+    MJExceptionTest();
+    
+    std::cout << std::endl;
+    
     extern void MJWorkQueueTest();
     MJWorkQueueTest();
     

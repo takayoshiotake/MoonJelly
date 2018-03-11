@@ -10,6 +10,7 @@
 		12C0721720555094001EE3D9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0721620555094001EE3D9 /* main.cpp */; };
 		12C0721E205550DF001EE3D9 /* MJWorkQueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0721D205550DF001EE3D9 /* MJWorkQueueTest.cpp */; };
 		12C0722920555AAA001EE3D9 /* MJDeferTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */; };
+		12C0722E20557405001EE3D9 /* MJExceptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0722D20557405001EE3D9 /* MJExceptionTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,8 @@
 		12C072262055530C001EE3D9 /* MJWorkQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MJWorkQueue.hpp; sourceTree = "<group>"; };
 		12C07227205559FC001EE3D9 /* MJDefer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MJDefer.hpp; sourceTree = "<group>"; };
 		12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MJDeferTest.cpp; sourceTree = "<group>"; };
+		12C0722D20557405001EE3D9 /* MJExceptionTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MJExceptionTest.cpp; sourceTree = "<group>"; };
+		12C0722F2055743B001EE3D9 /* MJException.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MJException.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				12C0721620555094001EE3D9 /* main.cpp */,
+				12C0722D20557405001EE3D9 /* MJExceptionTest.cpp */,
 				12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */,
 				12C0721D205550DF001EE3D9 /* MJWorkQueueTest.cpp */,
 			);
@@ -84,8 +88,9 @@
 		12C072252055530C001EE3D9 /* MoonJelly */ = {
 			isa = PBXGroup;
 			children = (
-				12C072262055530C001EE3D9 /* MJWorkQueue.hpp */,
 				12C07227205559FC001EE3D9 /* MJDefer.hpp */,
+				12C0722F2055743B001EE3D9 /* MJException.hpp */,
+				12C072262055530C001EE3D9 /* MJWorkQueue.hpp */,
 			);
 			path = MoonJelly;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			files = (
 				12C0721720555094001EE3D9 /* main.cpp in Sources */,
 				12C0721E205550DF001EE3D9 /* MJWorkQueueTest.cpp in Sources */,
+				12C0722E20557405001EE3D9 /* MJExceptionTest.cpp in Sources */,
 				12C0722920555AAA001EE3D9 /* MJDeferTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
