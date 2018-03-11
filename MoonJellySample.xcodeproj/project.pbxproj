@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12C0721720555094001EE3D9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0721620555094001EE3D9 /* main.cpp */; };
 		12C0721E205550DF001EE3D9 /* MJWorkQueueTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0721D205550DF001EE3D9 /* MJWorkQueueTest.cpp */; };
+		12C0722920555AAA001EE3D9 /* MJDeferTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		12C0721D205550DF001EE3D9 /* MJWorkQueueTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MJWorkQueueTest.cpp; sourceTree = "<group>"; };
 		12C072242055530C001EE3D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		12C072262055530C001EE3D9 /* MJWorkQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MJWorkQueue.hpp; sourceTree = "<group>"; };
+		12C07227205559FC001EE3D9 /* MJDefer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MJDefer.hpp; sourceTree = "<group>"; };
+		12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MJDeferTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				12C0721620555094001EE3D9 /* main.cpp */,
+				12C0722820555AAA001EE3D9 /* MJDeferTest.cpp */,
 				12C0721D205550DF001EE3D9 /* MJWorkQueueTest.cpp */,
 			);
 			path = MoonJellySample;
@@ -81,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				12C072262055530C001EE3D9 /* MJWorkQueue.hpp */,
+				12C07227205559FC001EE3D9 /* MJDefer.hpp */,
 			);
 			path = MoonJelly;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			files = (
 				12C0721720555094001EE3D9 /* main.cpp in Sources */,
 				12C0721E205550DF001EE3D9 /* MJWorkQueueTest.cpp in Sources */,
+				12C0722920555AAA001EE3D9 /* MJDeferTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
