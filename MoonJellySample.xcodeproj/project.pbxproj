@@ -262,6 +262,7 @@
 		12C0721B20555094001EE3D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78NCYGV39H;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,6 +273,7 @@
 		12C0721C20555094001EE3D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78NCYGV39H;
 				PRODUCT_NAME = "$(TARGET_NAME)";

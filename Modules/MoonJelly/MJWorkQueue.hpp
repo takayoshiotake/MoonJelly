@@ -21,7 +21,7 @@ namespace MoonJelly {
     private:
         bool is_cancelled_ = false;
     public:
-        std::function<void(MJWorkQueueItem &) noexcept> work_;
+        std::function<void(MJWorkQueueItem &)> work_;
         std::promise<void> promise_;
         
         MJWorkQueueItem(std::function<void(MJWorkQueueItem &)> work) noexcept
@@ -55,23 +55,23 @@ namespace MoonJelly {
         std::mutex works_mutex_;
         std::condition_variable workable_;
         
-        explicit MJWorkQueue() noexcept
-        : thread_([this]() {
-            while (!shutdown_) {
-                MJWorkQueueItem item = [this]() -> MJWorkQueueItem {
-                    std::unique_lock<std::mutex> lock(works_mutex_);
-                    if (works_.empty()) {
-                        workable_.wait(lock);
-                    }
+        explicit MJWorkQueue() noexcept {
+            thread_ = std::thread([this]() {
+                while (!shutdown_) {
+                    MJWorkQueueItem item = [this]() -> MJWorkQueueItem {
+                        std::unique_lock<std::mutex> lock(works_mutex_);
+                        if (works_.empty()) {
+                            workable_.wait(lock);
+                        }
+                        
+                        auto item = std::move(works_.front());
+                        works_.pop_front();
+                        return item;
+                    }();
                     
-                    auto item = std::move(works_.front());
-                    works_.pop_front();
-                    return item;
-                }();
-                
-                item.work_(item);
-            }
-        }) {
+                    item.work_(item);
+                }
+            });
         }
         
         ~MJWorkQueue() noexcept {
@@ -85,7 +85,7 @@ namespace MoonJelly {
             thread_.join();
         }
         
-        MJWorkQueueItem & async(std::function<void(MJWorkQueueItem const &) noexcept> work) noexcept {
+        MJWorkQueueItem & async(std::function<void(MJWorkQueueItem const &)> work) noexcept {
             std::unique_lock<std::mutex> lock(works_mutex_);
             works_.push_back(MJWorkQueueItem([work = std::move(work)](MJWorkQueueItem & item) {
                 if (item.is_cancelled()) {
