@@ -19,7 +19,7 @@ namespace MoonJelly {
 
     struct MJWorkQueueItem {
     private:
-        bool isCancelled_ = false;
+        bool is_cancelled_ = false;
     public:
         std::function<void(MJWorkQueueItem &) noexcept> work_;
         std::promise<void> promise_;
@@ -28,16 +28,16 @@ namespace MoonJelly {
         : work_(std::move(work)) {
         }
         
-        bool isCancelled() const noexcept {
-            return isCancelled_;
+        bool is_cancelled() const noexcept {
+            return is_cancelled_;
         }
         
         void cancel() noexcept {
-            isCancelled_ = true;
+            is_cancelled_ = true;
         }
         
         void wait() {
-            if (isCancelled_) {
+            if (is_cancelled_) {
                 throw std::runtime_error("cancelled");
             }
             try {
@@ -88,7 +88,7 @@ namespace MoonJelly {
         MJWorkQueueItem & async(std::function<void(MJWorkQueueItem const &) noexcept> work) noexcept {
             std::unique_lock<std::mutex> lock(works_mutex_);
             works_.push_back(MJWorkQueueItem([work = std::move(work)](MJWorkQueueItem & item) {
-                if (item.isCancelled()) {
+                if (item.is_cancelled()) {
                     item.promise_.set_exception(std::make_exception_ptr(std::runtime_error("cancelled")));
                     return;
                 }
