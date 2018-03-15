@@ -21,5 +21,10 @@ int main(int argc, const char * argv[]) {
     extern void MJWorkQueueTest();
     MJWorkQueueTest();
     
+    std::cout << std::endl;
+    
+    extern void MJWorkQueue2Test();
+    MJWorkQueue2Test();
+    
     return 0;
 }
