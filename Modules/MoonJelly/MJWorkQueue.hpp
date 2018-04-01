@@ -78,20 +78,20 @@ namespace MoonJelly {
                 std::unique_lock<std::mutex> lock(works_mutex_);
                 works_.clear();
             }
-            async([&](auto &) {
+            async([&]() {
                 shutdown_ = true;
             });
             thread_.join();
         }
         
-        MJWorkQueueItem & async(std::function<void(MJWorkQueueItem const &)> work) noexcept {
+        MJWorkQueueItem & async(std::function<void()> work) noexcept {
             std::unique_lock<std::mutex> lock(works_mutex_);
             works_.push_back(MJWorkQueueItem([work = std::move(work)](MJWorkQueueItem & item) {
                 if (item.is_cancelled()) {
                     item.promise_.set_exception(std::make_exception_ptr(std::runtime_error("cancelled")));
                     return;
                 }
-                work(item);
+                work();
                 item.promise_.set_value();
             }));
             auto & new_item = works_.back();
