@@ -50,6 +50,20 @@ namespace MoonJelly {
             catch (std::future_error const &) {
             }
         }
+        
+        void wait_for(double duration) {
+            if (is_cancelled_) {
+                throw std::runtime_error("cancelled");
+            }
+            if (promise_.get_future().wait_for(std::chrono::milliseconds(static_cast<long>(duration * 1000))) != std::future_status::ready) {
+                throw std::runtime_error("timeout");
+            }
+            try {
+                promise_.get_future().get();
+            }
+            catch (std::future_error const &) {
+            }
+        }
     };
     
     struct MJWorkQueue2 {

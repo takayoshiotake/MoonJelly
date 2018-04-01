@@ -52,9 +52,22 @@ void MJWorkQueue2Test() {
         record_time();
         std::cout << "5" << std::endl;
     });
+    auto & item6 = queue.async([&](auto & self) {
+        record_time();
+        std::cout << "6" << std::endl;
+    }, 2.0);
     
     record_time();
     std::cout << "Hello, World!\n";
+    
+    try {
+        item6.wait_for(1.0);
+    }
+    catch (std::runtime_error const & e) {
+        record_time();
+        std::cout << "Error: 6: " << e.what() << std::endl;
+    }
+    item6.cancel();
     
     std::this_thread::sleep_for(std::chrono::milliseconds(3100));
     record_time();
